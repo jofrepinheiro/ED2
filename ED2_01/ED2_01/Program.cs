@@ -13,12 +13,12 @@ using System.Threading.Tasks;
        3. "Tipo AB",6,11
        4. "Tipo O",null,null       
        # NOME_PACIENTE    TIPO_SANGUINEO  PROXIMA_POSIÇÃO
-       6. "Fulano de Tal"  AB              8
-       7. "Cicrano"        B               9
-       8. "Ronaldo"        AB              11
-       9. "Rivaldo"        B               10
-       10. "Gaucho"        B               null
-       11. "Roberto"       AB              null      
+       6. "Fulano de Tal",AB,8
+       7. "Cicrano",B,9
+       8. "Ronaldo",AB,11
+       9. "Rivaldo",B,10
+       10. "Gaucho",B,null
+       11. "Roberto",AB,null      
 */
 
 namespace ED2_01
