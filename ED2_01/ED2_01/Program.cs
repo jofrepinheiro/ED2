@@ -23,8 +23,9 @@ using System.Threading.Tasks;
 
 namespace ED2_01
 {
-    class Program
+    class ListaPacientes
     {
+        public string entrada = null;
         public static string caminhoArquivo = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "//ListaPacientes.txt";
         public static String[] cabecalho = { "Tipo A,null,null",
                                     "Tipo B,null,null",
@@ -41,14 +42,32 @@ namespace ED2_01
        
         static void Main(string[] args)
         {
-            Paciente paciente = new Paciente();
             inicializar();
-            //TERMINAR!!!
+            ListaPacientes lista = new ListaPacientes();
+            Paciente paciente = new Paciente();
+            while (true)
+            {
+                Console.WriteLine("Insira o nome do(a) próximo(a) paciente");
+                lista.entrada = Console.ReadLine();
+                paciente.nome = lista.entrada;
+
+                Console.WriteLine("Insira o tipo sanguineo dele(a)");
+                lista.entrada = Console.ReadLine();
+                paciente.tipoSanguineo = lista.entrada;
+
+                string[] linha = { paciente.nome + "," + paciente.tipoSanguineo };
+                File.AppendAllLines(caminhoArquivo, linha);
+
+
+            }
+            
+
+
         }
 
         private static void inicializar()
         {
-            System.IO.File.WriteAllLines(caminhoArquivo, cabecalho);
+            File.WriteAllLines(caminhoArquivo, cabecalho);
         }
     }
 }
