@@ -8,8 +8,17 @@ namespace ED2_01
 {
     class Program
     {
-        static void Main(string[] args)
+        public static int Main(string[] args)
         {
+
+            
+            string entrada = null;
+            while (entrada != "exit"){
+                Console.WriteLine("Insira os dados do próximo paciente:");
+                entrada = Console.ReadLine();
+            }
+            return 0;
+            
         }
     }
 }
