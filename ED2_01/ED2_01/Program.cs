@@ -21,7 +21,7 @@ namespace ED2_01
             {
                 Console.WriteLine("");
                 Console.WriteLine("==================== MENU PRINCIPAL =========================");
-                Console.WriteLine("Comandos: '1- limpar arquivo', '2- cadastrar', '3- convocar', '4- sair'");
+                Console.WriteLine("Comandos: '1': Limpeza de Arquivo, '2': Cadastro, '3': Convocação, '4': Consulta, '5': Impressao, '6': Sair");
                 entrada = Console.ReadLine();
 
                 switch(entrada){
@@ -33,6 +33,12 @@ namespace ED2_01
                         convocarPaciente();
                         break;
                     case "4":
+                        consultaPaciente();
+                        break;
+                    case "5":
+                        imprimir();
+                        break;
+                    case "6":
                         Environment.Exit(0);
                         break;
                     default: break;
@@ -40,7 +46,7 @@ namespace ED2_01
             }
         }
 
-        private static void cadastrarPaciente()
+        public static void cadastrarPaciente()
         {
             ListaPacientes lista = new ListaPacientes();
             Paciente paciente = new Paciente();
@@ -85,25 +91,73 @@ namespace ED2_01
             Console.WriteLine("Pacientes cadastrados com sucesso! Voltando ao menu...");
         }
 
-        private static void convocarPaciente() {
-            string[] arrayArquivo = File.ReadAllLines(caminhoArquivo);
-            List<string> listaArquivo = arrayArquivo.ToList();
-            listaArquivo.RemoveAt(1);
-            arrayArquivo = listaArquivo.ToArray();
+        public static void convocarPaciente() {
+            Console.WriteLine("Digite o orgao a ser doado");
+            String orgao = Console.ReadLine();
+
+            System.IO.StreamReader file = new System.IO.StreamReader(caminhoArquivo);
+
+            String[] arrayArquivo = File.ReadAllLines(caminhoArquivo);
+            int numberLines = arrayArquivo.Length;
+
+            for (int i = 0; i < numberLines; i++)
+            {
+                if (file.ReadLine().Contains(orgao)) {
+                    List<string> listaArquivo = arrayArquivo.ToList();
+                    listaArquivo.RemoveAt(i);
+                    arrayArquivo = listaArquivo.ToArray();
+                    break;
+                }
+            }
+            file.Close();
             File.WriteAllLines(caminhoArquivo, arrayArquivo);
             Console.WriteLine("Paciente removido com sucesso! Voltando ao menu...");
         }
 
 
-        private static void inicializar()
+        public static void inicializar()
         {
             File.WriteAllLines(caminhoArquivo, cabecalho);
             Console.WriteLine("Arquivo inicializado com sucesso! Abrindo menu...");
         }
 
+        public static void consultaPaciente(){
+            Console.WriteLine("Por favor, insira o numero de matricula do paciente desejado");
+            String matricula = Console.ReadLine();
+
+            System.IO.StreamReader file = new System.IO.StreamReader(caminhoArquivo);
+
+            String line;
+
+            while ((line = file.ReadLine()) != null) {
+                if (line.Contains(matricula)) {
+                    String[] dados = line.Split('\t');
+                    Console.WriteLine("Nome:"+dados[0]+"\nMatricula: "+dados[1]+"\nTipo: "+dados[2]+"\nGenero: "+dados[3]+"\nOrgao: "+dados[4]);
+                    break;
+                }
+            }
+            file.Close();
+        }
+
         public static void imprimir()
         {
-            //fazer
+            Console.WriteLine("Digite a quantidade de pacientes a serem impressos.");
+            System.IO.StreamReader file = new System.IO.StreamReader(caminhoArquivo);
+            int numeroLinhas = Int16.Parse(Console.ReadLine());
+            file.ReadLine();
+            for (int i = 0; i < numeroLinhas; i++)
+            {
+                String line = file.ReadLine();
+                if (line == null)
+                {
+                    break;
+                }
+                String[] dados = line.Split('\t');
+                Console.WriteLine("Nome:" + dados[0] + "\nMatricula: " + dados[1] + "\nTipo: " + dados[2] + "\nGenero: " + dados[3] + "\nOrgao: " + dados[4]);
+                Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
+                
+            }
+            file.Close();
         }
     }
 }
