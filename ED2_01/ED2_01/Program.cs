@@ -11,16 +11,9 @@ namespace ED2_01
     {
         public string entrada = null;
         //o arquivo vai estar na pasta meus documentos
-        public static string caminhoArquivo = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "//ListaPacientes.txt";
-        public static String[] cabecalho = { " " };
-
-        public class Paciente
-        {
-            public String nome;
-            public String tipoSanguineo;
-        }
-
-       
+        public static String caminhoArquivo = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "//ListaPacientes.txt";
+        public static String[] cabecalho = { "Nome \t Matricula \t TipoSanguineo \t Genero \t Orgao" };
+ 
         static void Main(string[] args)
         {
             string entrada;
@@ -28,16 +21,23 @@ namespace ED2_01
             {
                 Console.WriteLine("");
                 Console.WriteLine("==================== MENU PRINCIPAL =========================");
-                Console.WriteLine("Comandos: 'limpar arquivo', 'cadastrar', 'convocar', 'sair'");
+                Console.WriteLine("Comandos: '1- limpar arquivo', '2- cadastrar', '3- convocar', '4- sair'");
                 entrada = Console.ReadLine();
 
-                if (entrada == "limpar arquivo") inicializar();
-                if (entrada == "cadastrar") cadastrarPaciente();
-                if (entrada == "convocar") convocarPaciente();
-                if (entrada == "sair") break;
+                switch(entrada){
+                    case "1": inicializar();
+                        break;
+                    case "2": cadastrarPaciente();
+                        break;
+                    case "3":
+                        convocarPaciente();
+                        break;
+                    case "4":
+                        Environment.Exit(0);
+                        break;
+                    default: break;
+                }
             }
-
-
         }
 
         private static void cadastrarPaciente()
@@ -52,15 +52,32 @@ namespace ED2_01
                 Console.WriteLine("Digite 'voltar' para voltar ao menu principal");
                 Console.WriteLine("Ou insira o nome do(a) próximo(a) paciente");
                 lista.entrada = Console.ReadLine();
-                paciente.nome = lista.entrada;
+                paciente.Nome = lista.entrada;
                 if (lista.entrada == "voltar") break;
+
+                Console.WriteLine("Insira a matrícula do SUS dele(a)");
+                lista.entrada = Console.ReadLine();
+                paciente.Matricula = lista.entrada;
+                if (lista.entrada == "voltar") break;
+
 
                 Console.WriteLine("Insira o tipo sanguineo dele(a)");
                 lista.entrada = Console.ReadLine();
-                paciente.tipoSanguineo = lista.entrada;
+                paciente.TipoSanguineo = lista.entrada;
                 if (lista.entrada == "voltar") break;
 
-                listaDeLinhas.Add(paciente.nome + "            " + paciente.tipoSanguineo);
+
+                Console.WriteLine("Insira o genero dele(a)");
+                lista.entrada = Console.ReadLine();
+                paciente.Genero = lista.entrada[0];
+                if (lista.entrada == "voltar") break;
+
+                Console.WriteLine("Insira o orgao desejado");
+                lista.entrada = Console.ReadLine();
+                paciente.Orgao = lista.entrada;
+                if (lista.entrada == "voltar") break;
+
+                listaDeLinhas.Add(paciente.Nome + "\t" + paciente.Matricula + "\t" + paciente.TipoSanguineo + "\t" + paciente.Genero + "\t" + paciente.Orgao);
             }
 
             string[] arrayDeLinhas = listaDeLinhas.ToArray();

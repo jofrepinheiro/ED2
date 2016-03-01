@@ -5,3 +5,8 @@ C:\Users\Danilo\Source\Repos\ED2_Orgaos\ED2_01\ED2_01\bin\Debug\ED2_01.exe
 C:\Users\Danilo\Source\Repos\ED2_Orgaos\ED2_01\ED2_01\bin\Debug\ED2_01.pdb
 C:\Users\Danilo\Source\Repos\ED2_Orgaos\ED2_01\ED2_01\obj\Debug\ED2_01.exe
 C:\Users\Danilo\Source\Repos\ED2_Orgaos\ED2_01\ED2_01\obj\Debug\ED2_01.pdb
+C:\Users\Jofre\Documents\GitHub\ED2_Orgaos\ED2_01\ED2_01\bin\Debug\ED2_01.exe
+C:\Users\Jofre\Documents\GitHub\ED2_Orgaos\ED2_01\ED2_01\bin\Debug\ED2_01.pdb
+C:\Users\Jofre\Documents\GitHub\ED2_Orgaos\ED2_01\ED2_01\obj\Debug\ED2_01.csprojResolveAssemblyReference.cache
+C:\Users\Jofre\Documents\GitHub\ED2_Orgaos\ED2_01\ED2_01\obj\Debug\ED2_01.exe
+C:\Users\Jofre\Documents\GitHub\ED2_Orgaos\ED2_01\ED2_01\obj\Debug\ED2_01.pdb
