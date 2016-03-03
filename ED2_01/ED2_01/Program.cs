@@ -17,33 +17,21 @@ namespace ED2_01
         static void Main(string[] args)
         {
             string entrada;
+
             while (true)
             {
-                Console.WriteLine("");
-                Console.WriteLine("==================== MENU PRINCIPAL =========================");
-                Console.WriteLine("Comandos: '1': Limpeza de Arquivo, '2': Cadastro, '3': Convocação, '4': Consulta, '5': Impressao, '6': Sair");
+                Console.WriteLine("\n................. MENU PRINCIPAL ..................");
+                Console.WriteLine("Comandos: 'limpar', 'cadastrar', 'convocar', 'consultar', 'imprimir', 'sair'");
                 entrada = Console.ReadLine();
 
-                switch(entrada){
-                    case "1": inicializar();
-                        break;
-                    case "2": cadastrarPaciente();
-                        break;
-                    case "3":
-                        convocarPaciente();
-                        break;
-                    case "4":
-                        consultaPaciente();
-                        break;
-                    case "5":
-                        imprimir();
-                        break;
-                    case "6":
-                        Environment.Exit(0);
-                        break;
-                    default: break;
-                }
+                //if (entrada == "limpar") inicializar();
+                if (entrada == "cadastrar") cadastrarPaciente();
+                if (entrada == "convocar") convocarPaciente();
+                if (entrada == "consultar") consultarPaciente();
+                if (entrada == "imprimir") imprimir();
+                if (entrada == "sair") break;
             }
+           
         }
 
         public static void cadastrarPaciente()
@@ -114,14 +102,13 @@ namespace ED2_01
             Console.WriteLine("Paciente removido com sucesso! Voltando ao menu...");
         }
 
-
         public static void inicializar()
         {
             File.WriteAllLines(caminhoArquivo, cabecalho);
             Console.WriteLine("Arquivo inicializado com sucesso! Abrindo menu...");
         }
 
-        public static void consultaPaciente(){
+        public static void consultarPaciente(){
             Console.WriteLine("Por favor, insira o numero de matricula do paciente desejado");
             String matricula = Console.ReadLine();
 
