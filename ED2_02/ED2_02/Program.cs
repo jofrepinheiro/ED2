@@ -10,7 +10,6 @@ namespace ED2_02
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Testing GitIgnore");
         }
     }
 }
