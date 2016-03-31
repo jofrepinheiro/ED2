@@ -10,6 +10,15 @@ namespace ED2_02
     {
         static void Main(string[] args)
         {
+            FileManager file = new FileManager("arquivoTeste.txt");
+
+            file.addUser("05394853576", "password", "Jofre", "Pinheiro");
+            file.addUser("05394853576", "password", "Jofre", "Pinheiro");
+
+
+            Console.WriteLine(file.Content);
+            
+            Console.Read();
         }
     }
 }

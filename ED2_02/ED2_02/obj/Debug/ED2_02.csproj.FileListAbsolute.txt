@@ -4,3 +4,9 @@ C:\Users\Jofre\Documents\GitHub\ED2\ED2_02\ED2_02\bin\Debug\ED2_02.pdb
 C:\Users\Jofre\Documents\GitHub\ED2\ED2_02\ED2_02\obj\Debug\ED2_02.csprojResolveAssemblyReference.cache
 C:\Users\Jofre\Documents\GitHub\ED2\ED2_02\ED2_02\obj\Debug\ED2_02.exe
 C:\Users\Jofre\Documents\GitHub\ED2\ED2_02\ED2_02\obj\Debug\ED2_02.pdb
+C:\Users\Jofre\Documents\GitHub\ED2_Orgaos\ED2_02\ED2_02\bin\Debug\ED2_02.exe.config
+C:\Users\Jofre\Documents\GitHub\ED2_Orgaos\ED2_02\ED2_02\obj\Debug\ED2_02.exe
+C:\Users\Jofre\Documents\GitHub\ED2_Orgaos\ED2_02\ED2_02\obj\Debug\ED2_02.pdb
+C:\Users\Jofre\Documents\GitHub\ED2_Orgaos\ED2_02\ED2_02\bin\Debug\ED2_02.exe
+C:\Users\Jofre\Documents\GitHub\ED2_Orgaos\ED2_02\ED2_02\bin\Debug\ED2_02.pdb
+C:\Users\Jofre\Documents\GitHub\ED2_Orgaos\ED2_02\ED2_02\obj\Debug\ED2_02.csprojResolveAssemblyReference.cache
