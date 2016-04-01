@@ -61,7 +61,17 @@ namespace ED2_02
             //Checa se o usuário já existe
             if (existsInFile) Console.WriteLine("Usuário já existente.");
             //Se nao existe, concatena o usuario no arquivo e coloca como ativo
-            else appendToFile(cpf + "\t" + password + "\t" + nome + "\t" + sobrenome + "\t" + "1" + "\n");
+            else appendToFile(cpf + "\t" + password + "\t" + nome + "\t" + sobrenome + "\t" + "1" + " >>>");
+        }
+
+        internal void checkPassword(string cpf2, string senha2)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void removeUser(string cpf3, string senha3)
+        {
+            throw new NotImplementedException();
         }
     }
 }
