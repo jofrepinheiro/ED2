@@ -31,6 +31,8 @@ namespace ED2_02
             //Apenas para instância de objeto
         }
 
+        public String[] HashTable { get { return hashTable; } }
+
         //Getter para o numero primo
         public int PrimeNumber { get { return Convert.ToInt32(primeNumber); } }
 

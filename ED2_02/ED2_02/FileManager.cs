@@ -18,7 +18,7 @@ namespace ED2_02
             this.filePath = filePath;
             System.IO.File.WriteAllText(filePath, "");
             header();
-            hash = new Hash(filePath);    
+            hash = new Hash(filePath);
         }
 
         public String Content
@@ -91,10 +91,32 @@ namespace ED2_02
             return result;
         }
 
-        internal void checkPassword(string cpf2, string senha2)
+        internal void checkPassword(string cpf, string senha)
         {
-            throw new NotImplementedException();
+            int hashIndex = hash.calculateHashIndex(cpf);
+
+            if (!hash.exists(cpf, hashIndex))
+            {
+                Console.WriteLine("Usuário não existe.");
+            }
+            else {
+                String data = hash.HashTable[hashIndex];
+                data = data.Split('\t')[1];
+
+                String[] temp = System.IO.File.ReadAllLines(filePath);
+
+                int index = Convert.ToInt32(data);
+                if (temp[index].Contains(senha))
+                {
+                    Console.WriteLine("Senha confirmada.");
+                }
+                else {
+                    Console.WriteLine("Senha Incorreta.");
+                }
+
+            }
         }
+
 
         public void lookUpUser(String cpf)
         {
