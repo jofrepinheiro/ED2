@@ -17,6 +17,7 @@ namespace ED2_02
         */
         private long primeNumber = 53;
 
+        private String[] hashTable;
 
         public Hash(String filePath)
         {
@@ -25,13 +26,20 @@ namespace ED2_02
             createHashTable(hashName);
         }
 
+        public Hash()
+        {
+            //Apenas para instância de objeto
+        }
+
+        //Getter para o numero primo
+        public int PrimeNumber { get { return Convert.ToInt32(primeNumber); } }
 
         //Calcula o índice na Hash de acordo com o índice do arquivo passado
         public int calculateHashIndex(String cpf)
         {
             try
             {
-                long id = Convert.ToInt32(cpf);
+                long id = Convert.ToInt64(cpf);
                 return Convert.ToInt32(id % primeNumber);
             }
             catch (Exception ex)
@@ -44,8 +52,13 @@ namespace ED2_02
         //Cria a tabela Hashr
         public void createHashTable(String hashName)
         {
-            System.IO.File.WriteAllText(hashName, "");
-
+            //Inicializa todos os campos com -
+            hashTable = new String[PrimeNumber];
+            for (int i = 0; i < PrimeNumber; i++)
+            {
+                hashTable[i] = "-";
+            }
+            System.IO.File.WriteAllLines(hashName, hashTable);
         }
 
 
@@ -54,10 +67,31 @@ namespace ED2_02
         Método de tratamento de Colisões: Encadeamento de Excedentes
         Quando houver colisões, adiciona "do lado" dos que já existem    
         */
-        public void addToHT(String cpf)
+        internal bool exists(string cpf, int hashIndex)
         {
-            int hashIndex = calculateHashIndex(cpf);
+            if (hashTable[hashIndex] == "-" || !(hashTable[hashIndex].Contains(cpf)))
+            {
+                return false;
+            }
+            return true;
         }
 
+        internal bool isAvailable(int hashIndex)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void insertToHash(string cpf, int hashIndex, int address)
+        {
+            //Confere se o espaço tá vazio, se não está, concatena usando o separador >>>
+            if (hashTable[hashIndex] == "-")
+            {
+                hashTable[hashIndex] = cpf + "\t" + (address + 1).ToString();
+            }
+            else {
+                hashTable[hashIndex] += ">>>" + cpf + "\t" + (address + 1).ToString();
+            }
+            System.IO.File.WriteAllLines(hashName, hashTable);
+        }
     }
 }

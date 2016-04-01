@@ -53,7 +53,7 @@ namespace ED2_02
                         break;
                     case "3":
                         Console.WriteLine("- Listar Usuários");
-                        Console.WriteLine(file.Content);
+                        Console.WriteLine(file.listUsers());
 
                         break;
                     case "4":
