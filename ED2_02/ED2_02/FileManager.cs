@@ -65,7 +65,8 @@ namespace ED2_02
             if (!hash.exists(cpf, hashIndex))
             {
                 //Calcula o endereço do novo usuário e adiciona ao arquivo
-                int address = System.IO.File.ReadLines(filePath).Count() - 1;
+                int address = (System.IO.File.ReadLines(filePath).Count()) - 1;
+                
                 System.IO.File.AppendAllText(filePath, cpf + "\t" + password + "\t" + nome + "\t" + sobrenome + "\t" + "1\n");
 
                 //Insere na Hash
@@ -118,15 +119,47 @@ namespace ED2_02
         }
 
 
-        public void lookUpUser(String cpf)
+        public String lookUpUser(String cpf)
         {
             //Calcula o index por CPF
             int hashIndex = hash.calculateHashIndex(cpf);
+            return hash.HashTable[hashIndex];
         }
 
-        internal void removeUser(string cpf3, string senha3)
+        internal void removeUser(string cpf, string senha)
         {
-            throw new NotImplementedException();
-        }
+            String hashTableField = lookUpUser(cpf);
+            if (hashTableField == "-")
+            {
+                Console.WriteLine("Usuário não existe.");
+            }
+            else {
+                //Se contém mais de um usuário
+                if (hashTableField.Contains(">>>"))
+                {
+                    foreach (String element in hashTableField.Split('>'))
+                    {
+                        if (element.Contains(cpf))
+                        {
+                            hashTableField = element;
+                            hash.remove(cpf);
+                        }
+                    }
+                }
+                Console.WriteLine(hashTableField);
+                int address = Convert.ToInt32(hashTableField.Split()[1]);
+
+                String[] temp = System.IO.File.ReadAllLines(filePath);
+                
+                //Substitui o Char de Ativo para 0
+                temp[address] = temp[address].Remove(temp[address].Length - 1, 1)+ "0";
+
+                System.IO.File.WriteAllLines(filePath, temp);
+
+                
+            }
+            // String userList = System.IO.File.ReadAllLines(filePath)[hashAddress];
+
+            }
     }
 }

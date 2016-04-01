@@ -78,22 +78,46 @@ namespace ED2_02
             return true;
         }
 
-        internal bool isAvailable(int hashIndex)
-        {
-            throw new NotImplementedException();
-        }
+
 
         internal void insertToHash(string cpf, int hashIndex, int address)
         {
-            //Confere se o espaço tá vazio, se não está, concatena usando o separador >>>
+            //Confere se o espaço tá vazio, se não está, concatena usando o separador >
             if (hashTable[hashIndex] == "-")
             {
                 hashTable[hashIndex] = cpf + "\t" + (address + 1).ToString();
             }
             else {
-                hashTable[hashIndex] += ">>>" + cpf + "\t" + (address + 1).ToString();
+                hashTable[hashIndex] += ">" + cpf + "\t" + (address + 1).ToString();
             }
             System.IO.File.WriteAllLines(hashName, hashTable);
+        }
+
+        internal void remove(string key)
+        {
+            long hashAddress = Convert.ToInt64(key) % PrimeNumber;
+
+            int i = 1;
+            if (hashTable[hashAddress].Contains('>'))
+            {
+                String[] temp = hashTable[hashAddress].Split('>');
+                String aux = "";
+                foreach (String element in temp)
+                {
+                    if (i == element.Length)
+                    {
+                        aux += element;
+                    }
+                    else {
+                        aux += element + ">";
+                    }
+                }
+                hashTable[hashAddress] = aux;
+            }
+            else {
+                hashTable[hashAddress] = "-";
+            }
+
         }
     }
 }
