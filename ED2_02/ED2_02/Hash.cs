@@ -97,27 +97,38 @@ namespace ED2_02
         {
             long hashAddress = Convert.ToInt64(key) % PrimeNumber;
 
-            int i = 1;
-            if (hashTable[hashAddress].Contains('>'))
+            Console.WriteLine("Hash> " + hashAddress);
+
+            //Se contém mais de uma entrada
+            if (!(hashTable[hashAddress].Contains(">")))
             {
-                String[] temp = hashTable[hashAddress].Split('>');
-                String aux = "";
-                foreach (String element in temp)
-                {
-                    if (i == element.Length)
-                    {
-                        aux += element;
-                    }
-                    else {
-                        aux += element + ">";
-                    }
-                }
-                hashTable[hashAddress] = aux;
-            }
-            else {
                 hashTable[hashAddress] = "-";
             }
+            else {
+                String[] fields = hashTable[hashAddress].Split('>');
+                String temp = "";
+                int i = 0;
+                foreach (String element in fields)
+                {
+                    i++;
+                    String address = element.Split('\t')[0];
 
+                    if (!(address == key))
+                    {
+                        if (i == fields.Length)
+                        {
+                            temp = temp + element;
+                        }
+                        else {
+                            temp = temp + element + ">";
+                        }
+                    }
+
+                }
+                hashTable[hashAddress] = temp;
+                System.IO.File.WriteAllLines(hashName, hashTable);
+                Console.WriteLine("Temp? " + temp);
+            }
         }
     }
 }

@@ -66,7 +66,7 @@ namespace ED2_02
             {
                 //Calcula o endereço do novo usuário e adiciona ao arquivo
                 int address = (System.IO.File.ReadLines(filePath).Count()) - 1;
-                
+
                 System.IO.File.AppendAllText(filePath, cpf + "\t" + password + "\t" + nome + "\t" + sobrenome + "\t" + "1\n");
 
                 //Insere na Hash
@@ -102,11 +102,20 @@ namespace ED2_02
             }
             else {
                 String data = hash.HashTable[hashIndex];
-                data = data.Split('\t')[1];
 
                 String[] temp = System.IO.File.ReadAllLines(filePath);
+                int index = -1;
 
-                int index = Convert.ToInt32(data);
+                if (!(data.Contains(">"))){ 
+                    index = Convert.ToInt32(data.Split('\t')[1]);
+                }
+                else {
+                    String[] elements = data.Split('>');
+                    foreach (String element in elements)
+                    {
+                        index = Convert.ToInt32(element.Split('\t')[1]);
+                    }
+                }
                 if (temp[index].Contains(senha))
                 {
                     Console.WriteLine("Senha confirmada.");
@@ -134,32 +143,36 @@ namespace ED2_02
                 Console.WriteLine("Usuário não existe.");
             }
             else {
+                String[] temp = System.IO.File.ReadAllLines(filePath);
+
                 //Se contém mais de um usuário
-                if (hashTableField.Contains(">>>"))
+                if (hashTableField.Contains(">"))
                 {
                     foreach (String element in hashTableField.Split('>'))
                     {
-                        if (element.Contains(cpf))
+                        String fileKey = element.Split('\t')[0];
+                        int fileAddress = Convert.ToInt32(element.Split('\t')[1]);
+
+                        if (fileKey == (cpf))
                         {
                             hashTableField = element;
                             hash.remove(cpf);
+
+                            temp[fileAddress] = temp[fileAddress].Remove(temp[fileAddress].Length - 1, 1) + "0";
                         }
                     }
                 }
-                Console.WriteLine(hashTableField);
-                int address = Convert.ToInt32(hashTableField.Split()[1]);
+                else {
+                    int fileAddress = Convert.ToInt32(hashTableField.Split('\t')[1]);
+                    hash.remove(cpf);
+                    temp[fileAddress] = temp[fileAddress].Remove(temp[fileAddress].Length - 1, 1) + "0";
+                }
 
-                String[] temp = System.IO.File.ReadAllLines(filePath);
-                
-                //Substitui o Char de Ativo para 0
-                temp[address] = temp[address].Remove(temp[address].Length - 1, 1)+ "0";
-
+                //Substitui o Arquivo com o temp
                 System.IO.File.WriteAllLines(filePath, temp);
 
-                
-            }
-            // String userList = System.IO.File.ReadAllLines(filePath)[hashAddress];
 
             }
+        }
     }
 }

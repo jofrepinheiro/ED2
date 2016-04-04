@@ -11,11 +11,11 @@ namespace ED2_02
         static void Main(string[] args)
         {
             FileManager file = new FileManager("arquivoTeste.txt");
-            Console.WriteLine("Bem-vindo ao gerenciador de senhas 2016.");
+            Console.WriteLine("Bem-vindo ao gerenciador de senhas ED2 2015-2.");
             while (true)
             {
                 Console.WriteLine("Digite o número correspondente à operação que deseja realizar.");
-                Console.WriteLine("'1': Inserir novo usuário. -- '2': Checar senha de usuário. -- '3': Listar Usuários -- '4': Remover Usuário -- '5': Sair");
+                Console.WriteLine("'1':Inserir novo usuário. -- '2':Checar senha de usuário. -- '3':Listar Usuários -- '4':Remover Usuário -- '5': Sair");
                 String opCode = Console.ReadLine();
                 Console.Write("Operação escolhida: " + opCode);
 
